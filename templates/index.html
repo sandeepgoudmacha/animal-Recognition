@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Recognition</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1579781490974-79efb4a58c07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc0N3wwfDF8c2VhcmNofDF8fGFuaW1hbCUyMGJ1dHRlcnxlbnwwfHx8fDE2Mzk4MjM2Mjg&ixlib=rb-1.2.1&q=80&w=1080');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .container {
+            margin-top: 100px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .upload-btn {
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .upload-btn:hover {
+            background-color: #0056b3;
+        }
+        .fa-upload {
+            margin-right: 5px;
+        }
+        #image-preview {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="display-4">Animal Recognition</h1>
+            <p class="lead">Upload an image of an animal to get predictions.</p>
+        </div>
+        <form id="upload-form" enctype="multipart/form-data" method="post" action="/predict">
+            <div class="form-group">
+                <label for="file">Choose an image file</label>
+                <input type="file" class="form-control-file" id="file" name="file" required>
+            </div>
+            <button type="submit" class="btn btn-primary upload-btn"><i class="fas fa-upload"></i> Upload Image</button>
+        </form>
+        <div class="result" id="result"></div>
+        <img id="image-preview" src="#" alt="Image Preview" />
+    </div>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        const fileInput = document.getElementById('file');
+        const imagePreview = document.getElementById('image-preview');
+
+        // Show preview of the selected image
+        fileInput.onchange = (event) => {
+            const [file] = fileInput.files;
+            if (file) {
+                imagePreview.src = URL.createObjectURL(file);
+                imagePreview.style.display = "block";
+            }
+        };
+
+        form.onsubmit = async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            const resultDiv = document.getElementById('result');
+            if (result.error) {
+                resultDiv.innerHTML = `<div class="alert alert-danger">${result.error}</div>`;
+            } else {
+                resultDiv.innerHTML = `<div class="alert alert-success">Predicted Animal: ${result.animal_name}</div>`;
+            }
+        };
+    </script>
+</body>
+</html>
