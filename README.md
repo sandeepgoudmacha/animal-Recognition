@@ -48,16 +48,5 @@ This project is an Animal Recognition web application that utilizes a trained ma
 ### Model Training
 The model was trained using a dataset of various animals. It utilizes the ResNet50 architecture and is fine-tuned for better performance. The model file is included in the repository as animal_recognition_model.h5.
 
-### File Structure
-graphql
-.
-├── animal_recognition_model.h5  # The trained model
-├── app.py                       # The main Flask application
-├── requirements.txt             # Python packages required
-├── sample_img_of_animals/       # Sample images for testing
-├── templates/                   # HTML templates for the web application
-├── train_animal_recognition_model.py  # Script to train the model
-└── .gitattributes                # Git LFS tracking file
-
 ### Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
