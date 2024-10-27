@@ -16,6 +16,16 @@ This project is an Animal Recognition web application that utilizes a trained ma
 - **NumPy**: Library for numerical computations.
 - **Git LFS**: For handling large files like datasets.
 
+
+## output
+![Screenshot 2024-10-27 234553](https://github.com/user-attachments/assets/295b66c3-05ca-4513-8a33-5887f2f72812)
+
+![Screenshot 2024-10-27 234647](https://github.com/user-attachments/assets/54ff0c42-01c6-43a9-bb77-251f78810eec)
+
+![Screenshot 2024-10-27 234438](https://github.com/user-attachments/assets/e1587e0c-27a6-4ff9-9798-fbbbbf76a83d)  ![Screenshot 2024-10-27 234702](https://github.com/user-attachments/assets/c271e82e-40e1-4f57-9d09-e6823133422f)
+
+
+
 ## Installation
 
 ### Prerequisites
