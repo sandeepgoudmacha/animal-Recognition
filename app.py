@@ -4,15 +4,12 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 import tensorflow as tf
 from PIL import Image
+import os
 
 app = Flask(__name__)
 
 # Load the saved model
-# from tensorflow.keras.models import load_model
-
-# Load and re-save the model locally with the latest TensorFlow/Keras
-model = load_model("animal_recognition_model.h5")
-model.save("animal_recognition_model_compatible.h5")
+model = load_model("./animal_recognition_model.h5")
 
 # Class names based on the dataset
 class_names = ['butterfly', 'cat', 'cow', 'dog', 'elephant', 'goat', 'hen', 'horse', 'spider', 'squirrel']
